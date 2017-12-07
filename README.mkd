@@ -67,6 +67,7 @@ A plugin handles:
 - cp /usr/local/shotgun/shotgunEvents/src/shotgunEventDaemon.service /etc/systemd/system/shotgunEventDaemon.service
 - systemctl enable shotgunEventDaemon.service
 - systemctl start shotgunEventDaemon.service
+- systemctl status shotgunEventDaemon.service
 - tail -f /var/log/shotgunEventDaemon/shotgunEventDaemon
 
 
