@@ -1,0 +1,15 @@
+[Unit]
+Description=Shotgun Event Monitoring Daemon
+After=remote-fs.target
+
+[Service]
+Type=simple
+User=shotgun
+Group=shotgun
+ExecStart=/usr/local/shotgun/shotgunEvents/src/shotgunEventDaemon.sh start
+ExecStop=/usr/local/shotgun/shotgunEvents/src/shotgunEventDaemon.sh stop
+PIDFile=/var/log/shotgunEventDaemon/shotgunEventDaemon.pid
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

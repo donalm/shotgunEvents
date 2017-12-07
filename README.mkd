@@ -53,6 +53,23 @@ A plugin handles:
   many event processing plugins).
   
 
+## Deploy as a CentOS7 systemd service
+- su
+- mkdir -p /usr/local/shotgun/plugins
+- cd /usr/local/shotgun
+- git clone https://github.com/donalm/shotgunEvents.git
+- git clone https://github.com/shotgunsoftware/python-api.git
+- cp /usr/local/shotgun/shotgunEvents/src/shotgunEventDaemon.conf.example /usr/local/shotgun/shotgunEvents/src/shotgunEventDaemon.conf
+- Edit /usr/local/shotgun/shotgunEvents/src/shotgunEventDaemon.conf and fix the 'server' and 'key' values
+- mkdir -p /var/log/shotgunEventDaemon
+- useradd -s /bin/false -r -M -d /dev/null shotgun
+- chown shotgun:shotgun /var/log/shotgunEventDaemon
+- cp /usr/local/shotgun/shotgunEvents/src/shotgunEventDaemon.service /etc/systemd/system/shotgunEventDaemon.service
+- systemctl enable shotgunEventDaemon.service
+- systemctl start shotgunEventDaemon.service
+- tail -f /var/log/shotgunEventDaemon/shotgunEventDaemon
+
+
 ## Documentation
 
 See the [GitHub Wiki](https://github.com/shotgunsoftware/shotgunEvents/wiki).
